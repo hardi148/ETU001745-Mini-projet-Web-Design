@@ -28,7 +28,7 @@ Route::get('/log_out',\App\Http\Controllers\AdminController::class . '@log_out')
 
 
 
-Route::get('/frontOffice',\App\Http\Controllers\UserController::class . '@index');
+Route::get('/front',\App\Http\Controllers\UserController::class . '@index');
 Route::post('/log_user',\App\Http\Controllers\UserController::class . '@log_user');
 Route::get('/liste',\App\Http\Controllers\UserController::class . '@liste');
 Route::get('/article/{id}',\App\Http\Controllers\UserController::class . '@fiche');
