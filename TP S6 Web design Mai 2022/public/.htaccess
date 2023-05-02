@@ -4,6 +4,14 @@
     </IfModule>
 
 
+    
+   <IfModule mod_headers.c>
+   <FilesMatch "\.(css|js|svg|png|jpg|jpeg|gif|ico)$">
+   Header set Cache-Control "max-age=304800, public"
+   </FilesMatch>
+   </IfModule>
+
+
     RewriteEngine On
 
     # Handle Authorization Header
