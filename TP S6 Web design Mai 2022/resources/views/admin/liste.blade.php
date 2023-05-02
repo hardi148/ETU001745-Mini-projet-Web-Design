@@ -23,42 +23,25 @@
         @include('template.Header')
         <div class="container-fluid">
                 
-            <form action="{{ url('/recherche') }}" method="post">
-                {{ csrf_field() }}      
-
-
-                <div class="mb-3">
-                    <div class="row">
-                      <div class="col" style="color: rgb(0,0,0);"><label class="col-form-label">Titre:<input name="titre" class="form-control" type="text" style="color: rgb(0,0,0);"></label></div>
-                    </div>
-                  </div>      
-                  <div><button class="btn btn-primary d-block w-100" type="submit" style="background:rgb(219, 101, 33);border-style: none;">Rechercher</button></div>
-      </form>
 <div class="card-body">                
         <div class="col-xl-12 mb-3">
 <div class="row">
-  @foreach($liste as $rows) 
-    <div class="col-md-3">
-      <div class="card">
-        <img src="{{ $rows->img }}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h1 class="card-title">{{ $rows->titre }}</h1>
-          <h2 class="my-3">Auteur : {{ $rows->auteur }}</h2>
-          <h3>publie le {{ $rows->datepublication }}</h3>
-          <h4>publie le {{ $rows->resumer }}</h4>
-          <p class="card-text">{{ $rows->contenu }}</p>
-          <a class="btn btn-primary" href="{{ url('/Versupdate') }}/{{Str::slug($rows->titre) }}-{{ $rows->idarticle }}-modif.html" style="background:rgb(219, 101, 33);border-style: none;margin-top: 5px;">Modifier</a>
-          <a class="btn btn-primary" href="{{ url('/delete') }}/{{ Str::random(20) }}.{{ $rows->idarticle }}.67y89.45h" style="background:rgb(219, 101, 33);border-style: none;margin-top: 5px;">Supprimer</a>
-        </div>
-      </div>
-    </div>
-@endforeach
+  @foreach ($liste as $rows)
+  <div class="col-md-3 col-sm-6 highlight">
+   <img src="{{ $rows->img }}" width="400px" height="300px" class="card-img-top" alt="...">
+   <div class="h-caption"><b>{{ $rows->titre }} le {{ $rows->datepublication }} </b></div>
+   <div class="h-body text-center">
+     <p>{{ $rows->contenu }}</p>
+     <a class="btn btn-primary" href="{{ url('/Versupdate') }}/{{Str::slug($rows->titre) }}-{{ $rows->idarticle }}-modif.html" style="background:rgb(219, 101, 33);border-style: none;margin-top: 5px;">Modifier</a>
+     <a class="btn btn-primary" href="{{ url('/delete') }}/{{ Str::random(20) }}.{{ $rows->idarticle }}.67y89.45h" style="background:rgb(219, 101, 33);border-style: none;margin-top: 5px;">Supprimer</a>
+   </div>
+ </div>
+  @endforeach	
 </div>  
-                                        
+          <br><br>
+          <h1>Ajouter un article</h1>                              
     <form action="{{ url('/insererArticle') }}" method="post">
-
                 {{ csrf_field() }}
-              
                 <label for="article_title">Titre de l'article:</label>
                 <input type="text" id="article_title" name="titre" ><br><br>
 

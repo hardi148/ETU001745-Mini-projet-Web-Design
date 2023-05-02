@@ -111,27 +111,6 @@ class AdminController extends Controller
     return redirect("lister");  
    }
 
-   public function recherche(Request $request)
-   {
-       $query = "SELECT * FROM articles";
-       $bindings = array();
-       if (null!==$request->input('titre')) {
-           $query .= (count($bindings) > 0 ? " AND" : " WHERE") . " titre like ?";
-           $bindings[] = "%" . $request->input('titre') . "%";
-       }
-       $results = \DB::select($query, $bindings);
-       $lastPage = 5; 
-       $listeNumeroPage = range(1, $lastPage);
-       $currentPage = 1;
-       return view('admin/liste',[
-           'liste' => $results,
-           'lastPage' => $lastPage,
-           'listeNumeroPage' => $listeNumeroPage,
-           'currentPage' => $currentPage,
-       ]);
-   }
-
-
    public function log_out()
    {
           return redirect("/");
